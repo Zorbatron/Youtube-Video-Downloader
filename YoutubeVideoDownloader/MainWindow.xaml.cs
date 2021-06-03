@@ -3,6 +3,7 @@ using System.Windows;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
+using YoutubeVideoDownloader;
 
 namespace YTVideoDownloader
 {
@@ -70,6 +71,12 @@ namespace YTVideoDownloader
             {
                 MessageBox.Show(Ex.Message);
             }
+        }
+
+        private void OpenQualWin_Click(object sender, RoutedEventArgs e)
+        {
+            QualitySelector qualSelect = new QualitySelector();
+            qualSelect.Show();
         }
     }
 }
