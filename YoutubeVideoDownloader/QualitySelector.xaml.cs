@@ -12,16 +12,21 @@ namespace YoutubeVideoDownloader
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void QualSelectorLoaded(object sender, RoutedEventArgs e)
         {
             Process p = new Process();
             p.StartInfo.FileName = "youtube-dl.exe";
-            p.StartInfo.Arguments = "-F https://www.youtube.com/watch?v=4sRDppM6cj4";
+            p.StartInfo.Arguments = "-F https://www.youtube.com/watch?v=LXb3EKWsInQ";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
 
+            string newLine = Environment.NewLine;
+
             List<string> output = new List<string>();
+            List<string> qualNum = new List<string>();
+            List<string> qualType = new List<string>();
+            List<string> qualResolution = new List<string>();
 
             while (!p.StandardOutput.EndOfStream)
             {
@@ -30,12 +35,29 @@ namespace YoutubeVideoDownloader
 
             output.RemoveRange(0, 3);
 
-            for (int x = 0; x < output.Count; x++)
+            foreach (string text in output)
             {
-                Console.WriteLine(output[x]);
+                qualNum.Add(text.Remove(3));
             }
 
-            Console.ReadLine();
+            foreach (string text in output)
+            {
+                text.Remove(0, 13);
+                qualType.Add(text.Remove(3));
+            }
+
+            foreach (string text in output)
+            {
+                text.Remove(0, 24);
+                qualResolution.Add(text.Remove(10));
+            }
+
+            for (int x = 0; x < output.Count; x++)
+            {
+                OutputBox.Text += qualNum[x] + " ";
+                OutputBox.Text += qualType[x] + " ";
+                OutputBox.Text += qualResolution[x] + newLine;
+            }
         }
     }
 }

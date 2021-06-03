@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YoutubeVideoDownloader"
         mc:Ignorable="d"
-        Title="QualitySelector" Height="400" Width="400">
+        Title="QualitySelector" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Click="Button_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+            <TextBlock Name="OutputBox" Loaded="QualSelectorLoaded"/>
+        </ScrollViewer>
     </Grid>
 </Window>
