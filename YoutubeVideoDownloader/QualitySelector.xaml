@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YoutubeVideoDownloader"
         mc:Ignorable="d"
-        Title="QualitySelector" Height="400" Width="400" WindowStartupLocation="CenterScreen">
+        Title="QualitySelector" Height="400" Width="400" WindowStartupLocation="CenterScreen" Loaded="QualSelectorLoaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -16,15 +16,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <TextBlock Name="OutputBox" Loaded="QualSelectorLoaded"/>
-        </ScrollViewer>
+        <TextBlock Visibility="Hidden" Grid.Column="0" Grid.Row="0" Name="IReallyHopeThisCodeWorks"/>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="2">
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
             <StackPanel Name="StackPanel"/>
         </ScrollViewer>
     </Grid>

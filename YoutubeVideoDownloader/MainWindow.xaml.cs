@@ -9,6 +9,7 @@ namespace YTVideoDownloader
 {
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -76,6 +77,7 @@ namespace YTVideoDownloader
         private void OpenQualWin_Click(object sender, RoutedEventArgs e)
         {
             QualitySelector qualSelect = new QualitySelector();
+            qualSelect.IReallyHopeThisCodeWorks.Text = webLink.Text;
             qualSelect.Show();
         }
     }
