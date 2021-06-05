@@ -16,11 +16,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <TextBlock Name="OutputBox" Loaded="QualSelectorLoaded"/>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="2">
+            <StackPanel Name="StackPanel"/>
         </ScrollViewer>
     </Grid>
 </Window>
