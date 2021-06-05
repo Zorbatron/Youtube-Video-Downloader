@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YoutubeVideoDownloader"
         mc:Ignorable="d"
-        Title="QualitySelector" Height="400" Width="400" WindowStartupLocation="CenterScreen" Loaded="QualSelectorLoaded">
+        Title="QualitySelector" Height="400" Width="700" WindowStartupLocation="CenterScreen" Loaded="QualSelectorLoaded" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>

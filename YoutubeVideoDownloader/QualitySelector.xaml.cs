@@ -53,17 +53,13 @@ namespace YoutubeVideoDownloader
 
                 for (int x = 0; x < output.Count; x++)
                 {
-                    Button button = new Button
+                    Button button = new Button 
                     {
                         Name = $"BT{qualNum[x]}",
                         Content = qual[x],
                         VerticalAlignment = VerticalAlignment.Center,
-                        Width = 500
+                        Width = 600 
                     };
-                    Thickness margin = button.Margin;
-                    margin.Top = 5.0;
-                    margin.Bottom = 5.0;
-                    button.Margin = margin;
                     button.Click += new RoutedEventHandler(QualButtonPressed);
                     StackPanel.Children.Add(button);
                 }
