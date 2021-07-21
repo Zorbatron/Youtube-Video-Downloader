@@ -9,6 +9,8 @@ namespace YoutubeVideoDownloader
 {
     public partial class QualitySelector : Window
     {
+        public string webLink;
+
         public QualitySelector()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace YoutubeVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "youtube-dl.exe";
-            p.StartInfo.Arguments = $"-F {IReallyHopeThisCodeWorks.Text}";
+            p.StartInfo.Arguments = $"-F {webLink}";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
@@ -81,7 +83,7 @@ namespace YoutubeVideoDownloader
 
             Process p = new Process();
             p.StartInfo.FileName = "youtube-dl.exe";
-            p.StartInfo.Arguments = $"-f {button.Name.Remove(0, 2)} {IReallyHopeThisCodeWorks.Text}";
+            p.StartInfo.Arguments = $"-f {button.Name.Remove(0, 2)} {webLink}";
             p.Start();
         }
     }
