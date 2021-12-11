@@ -12,6 +12,8 @@ namespace YTVideoDownloader
         public MainWindow()
         {
             InitializeComponent();
+
+            webLink.Text = Clipboard.GetText();
         }
 
         private void DownloadBtn_Click(object sender, RoutedEventArgs e)
@@ -30,7 +32,7 @@ namespace YTVideoDownloader
         public void DownloadVideo()
         {
             string directory = Directory.GetCurrentDirectory();
-            string fileName = Path.Combine(directory, "youtube-dl.exe");
+            string fileName = Path.Combine(directory, "yt-dlp.exe");
             string ffmpeg = Path.Combine("ffmpeg", "ffmpeg.exe");
             string ffmpegLocation = Path.Combine(directory, ffmpeg);
 

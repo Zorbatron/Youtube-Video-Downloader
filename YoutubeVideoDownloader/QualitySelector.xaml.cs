@@ -19,13 +19,20 @@ namespace YoutubeVideoDownloader
         private void QualSelectorLoaded(object sender, RoutedEventArgs e)
         {
             Process p = new Process();
-            p.StartInfo.FileName = "youtube-dl.exe";
+            p.StartInfo.FileName = "yt-dlp.exe";
             p.StartInfo.Arguments = $"-F {webLink}";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
 
-            string newLine = Environment.NewLine;
+
+
+
+
+
+            //Old parsing code, not deleting just in case.
+            
+            /* string newLine = Environment.NewLine;
 
             List<string> output = new List<string>();
             List<int> qualNum = new List<int>();
@@ -37,7 +44,6 @@ namespace YoutubeVideoDownloader
             }
 
             try
-            {
 
                 output.RemoveRange(0, 3);
 
@@ -69,7 +75,7 @@ namespace YoutubeVideoDownloader
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
-            }
+            } */
         }
 
         private void QualButtonPressed(object sender, EventArgs e)
