@@ -3,7 +3,6 @@ using System.Windows;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
-using YoutubeVideoDownloader;
 
 namespace YTVideoDownloader
 {
@@ -77,9 +76,10 @@ namespace YTVideoDownloader
 
         private void OpenQualWin_Click(object sender, RoutedEventArgs e)
         {
-            QualitySelector qualSelect = new QualitySelector();
-            qualSelect.webLink = webLink.Text;
-            qualSelect.Show();
+            Process p = new Process();
+            p.StartInfo.FileName = "cmd";
+            p.StartInfo.Arguments = $"yt-dlp.exe -F {webLink}";
+            p.Start();
         }
     }
 }
