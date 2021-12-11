@@ -36,7 +36,8 @@
             </Button>
         </StackPanel>
 
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="25" Name="qualityTextBox" TextWrapping="Wrap">
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="25" Name="qualityTextBox" 
+                 TextWrapping="Wrap" KeyDown="qualityTextBox_KeyDown">
             Put ID here after choosing your desired quality
         </TextBox>
 

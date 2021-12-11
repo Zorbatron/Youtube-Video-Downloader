@@ -32,7 +32,7 @@ namespace YTVideoDownloader
 
         private static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
 
-        public void DownloadVideo()
+        private void DownloadVideo()
         {
             string directory = Directory.GetCurrentDirectory();
             string fileName = Path.Combine(directory, "yt-dlp.exe");
@@ -83,6 +83,19 @@ namespace YTVideoDownloader
         }
 
         private void DownloadQualBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DownloadQuality();
+        }
+
+        private void qualityTextBox_KeyDown(object sender, KeyEventArgs key)
+        {
+            if (key.Key == Key.Enter)
+            {
+                DownloadQuality();
+            }
+        }
+
+        private void DownloadQuality()
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
