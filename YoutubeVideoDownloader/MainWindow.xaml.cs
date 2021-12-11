@@ -30,6 +30,8 @@ namespace YTVideoDownloader
             }
         }
 
+        private static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
+
         public void DownloadVideo()
         {
             string directory = Directory.GetCurrentDirectory();
@@ -41,33 +43,12 @@ namespace YTVideoDownloader
             {
                 if (mp4.IsChecked == true)
                 {
-                    Process.Start(fileName, webLink.Text + " -f best");
-                }
-                if (webm.IsChecked == true)
-                {
-                    MessageBoxResult result = MessageBox.Show("Webm videos take some time to convert with ffmpeg, are you sure you want to convert?", "", MessageBoxButton.YesNo);
-
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        Process.Start(fileName, webLink.Text + $"-f best --recode-video webm --ffmpeg-location {ffmpegLocation}");
-                    }
+                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
                 }
 
                 if (mp3.IsChecked == true)
                 {
-                    Process.Start(fileName, webLink.Text + $"-f best -x --audio-format mp3 --ffmpeg-location {ffmpegLocation}");
-                }
-                if (flac.IsChecked == true)
-                {
-                    Process.Start(fileName, webLink.Text + $"-f best -x --audio-format flac --ffmpeg-location {ffmpegLocation}");
-                }
-                if (wav.IsChecked == true)
-                {
-                    Process.Start(fileName, webLink.Text + $"-f best -x --audio-format wav --ffmpeg-location {ffmpegLocation}");
-                }
-                if (m4a.IsChecked == true)
-                {
-                    Process.Start(fileName, webLink.Text + $"-f best -x --audio-format m4a --ffmpeg-location {ffmpegLocation}");
+                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best -x --audio-format mp3 --ffmpeg-location \"{ffmpegLocation}\"" + $" \"{webLink.Text}\"");
                 }
             }
             catch (Exception Ex)
@@ -79,7 +60,7 @@ namespace YTVideoDownloader
         private void OpenQualWin_Click(object sender, RoutedEventArgs e)
         {
             Process p = new Process();
-            p.StartInfo.FileName = "cmd";
+            p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.Arguments = $"/k yt-dlp.exe -F {webLink}";
             p.Start();
 
@@ -88,17 +69,24 @@ namespace YTVideoDownloader
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (processID.HasExited == false)
+            try
             {
-                processID.Kill();
-            } 
+                if (processID.HasExited == false)
+                {
+                    processID.Kill();
+                }
+            }
+            catch 
+            {
+                //hi
+            }
         }
 
         private void DownloadQualBtn_Click(object sender, RoutedEventArgs e)
         {
             Process p = new Process();
-            p.StartInfo.FileName = "yt-dlp.exe";
-            p.StartInfo.Arguments = $"-f {qualityTextBox.Text}";
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.Arguments = $"/c yt-dlp.exe -o \"{downloadsFolder}\" -f \"{qualityTextBox.Text}\" \"{webLink.Text}\"";
             p.Start();
         }
     }
