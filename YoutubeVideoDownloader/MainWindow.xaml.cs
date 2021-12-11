@@ -8,6 +8,8 @@ namespace YTVideoDownloader
 {
     public partial class MainWindow : Window
     {
+        private Process processID;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -78,7 +80,25 @@ namespace YTVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd";
-            p.StartInfo.Arguments = $"yt-dlp.exe -F {webLink}";
+            p.StartInfo.Arguments = $"/k yt-dlp.exe -F {webLink}";
+            p.Start();
+
+            processID = p;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (processID.HasExited == false)
+            {
+                processID.Kill();
+            } 
+        }
+
+        private void DownloadQualBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = "yt-dlp.exe";
+            p.StartInfo.Arguments = $"-f {qualityTextBox.Text}";
             p.Start();
         }
     }
