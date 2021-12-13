@@ -30,25 +30,25 @@ namespace YTVideoDownloader
             }
         }
 
-        private static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
+        static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
+        static string directory = Directory.GetCurrentDirectory();
+        static string fileName = Path.Combine(directory, "yt-dlp.exe");
+        static string ffmpeg = Path.Combine("ffmpeg", "ffmpeg.exe");
+        static string ffmpegLocation = Path.Combine(directory, ffmpeg);
 
         private void DownloadVideo()
         {
-            string directory = Directory.GetCurrentDirectory();
-            string fileName = Path.Combine(directory, "yt-dlp.exe");
-            string ffmpeg = Path.Combine("ffmpeg", "ffmpeg.exe");
-            string ffmpegLocation = Path.Combine(directory, ffmpeg);
 
             try
             {
                 if (mp4.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
                 }
 
                 if (mp3.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best -x --audio-format mp3 --ffmpeg-location \"{ffmpegLocation}\"" + $" \"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best -x --audio-format mp3 --ffmpeg-location \"{ffmpegLocation}\"" + $" \"{webLink.Text}\"");
                 }
             }
             catch (Exception Ex)
