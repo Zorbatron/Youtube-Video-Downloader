@@ -104,9 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ffmpeg\ffmpeg.exe" />
-    <Content Include="ffmpeg\ffplay.exe" />
-    <Content Include="ffmpeg\ffprobe.exe" />
     <Content Include="youtube-dl.exe" />
     <Resource Include="YTDownIcon.ico" />
   </ItemGroup>

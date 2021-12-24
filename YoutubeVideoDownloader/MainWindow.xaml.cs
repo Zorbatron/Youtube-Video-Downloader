@@ -48,7 +48,7 @@ namespace YTVideoDownloader
 
                 if (mp3.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best -x --audio-format mp3 --ffmpeg-location \"{ffmpegLocation}\"" + $" \"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best -x --audio-format mp3 \"{webLink.Text}\"");
                 }
             }
             catch (Exception Ex)
