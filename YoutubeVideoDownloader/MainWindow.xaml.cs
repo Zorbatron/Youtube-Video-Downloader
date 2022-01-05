@@ -32,9 +32,7 @@ namespace YTVideoDownloader
 
         static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
         static string directory = Directory.GetCurrentDirectory();
-        static string fileName = Path.Combine(directory, "yt-dlp.exe");
-        static string ffmpeg = Path.Combine("ffmpeg", "ffmpeg.exe");
-        static string ffmpegLocation = Path.Combine(directory, ffmpeg);
+        static string fileName = Path.Combine(directory, @"yt-dlp\yt-dlp.exe");
 
         private void DownloadVideo()
         {
@@ -43,12 +41,12 @@ namespace YTVideoDownloader
             {
                 if (mp4.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/k {fileName} --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
                 }
 
                 if (mp3.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c yt-dlp.exe --output \"{downloadsFolder}\" -f best -x --audio-format mp3 \"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best -x --audio-format mp3 \"{webLink.Text}\"");
                 }
             }
             catch (Exception Ex)
@@ -61,10 +59,10 @@ namespace YTVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.Arguments = $"/k yt-dlp.exe -F {webLink}";
+            p.StartInfo.Arguments = $"/k {fileName} -F {webLink.Text}";
             p.Start();
 
-            processID = p;
+            processID = p; 
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -99,7 +97,7 @@ namespace YTVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.Arguments = $"/c yt-dlp.exe -o \"{downloadsFolder}\" -f \"{qualityTextBox.Text}\" \"{webLink.Text}\"";
+            p.StartInfo.Arguments = $"/c {fileName} -o \"{downloadsFolder}\" -f \"{qualityTextBox.Text}\" \"{webLink.Text}\"";
             p.Start();
         }
     }
