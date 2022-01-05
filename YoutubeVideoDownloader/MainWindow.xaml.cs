@@ -10,11 +10,25 @@ namespace YTVideoDownloader
     {
         private Process processID;
 
+        static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
+        static string directory = Directory.GetCurrentDirectory();
+        static string fileName = Path.Combine(directory, @"yt-dlp\yt-dlp.exe");
+
         public MainWindow()
         {
             InitializeComponent();
 
             webLink.Text = Clipboard.GetText();
+
+            switch (File.Exists(fileName))
+            {
+                case false:
+                    MessageBox.Show("yt-dlp wasn't found, read readme.md");
+                    Application.Current.Shutdown();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void DownloadBtn_Click(object sender, RoutedEventArgs e)
@@ -29,10 +43,6 @@ namespace YTVideoDownloader
                 DownloadVideo();
             }
         }
-
-        static string downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads\Youtube Video Downloader\%(title)s.%(ext)s";
-        static string directory = Directory.GetCurrentDirectory();
-        static string fileName = Path.Combine(directory, @"yt-dlp\yt-dlp.exe");
 
         private void DownloadVideo()
         {
