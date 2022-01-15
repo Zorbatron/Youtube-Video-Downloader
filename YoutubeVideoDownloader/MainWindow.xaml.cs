@@ -51,12 +51,12 @@ namespace YTVideoDownloader
             {
                 if (mp4.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/k {fileName} --output \"{downloadsFolder}\" -f best " + $"\"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c '{fileName}' --output '{downloadsFolder}' -f best " + $"'{webLink.Text}'");
                 }
 
                 if (mp3.IsChecked == true)
                 {
-                    Process.Start("cmd.exe", $"/c {fileName} --output \"{downloadsFolder}\" -f best -x --audio-format mp3 \"{webLink.Text}\"");
+                    Process.Start("cmd.exe", $"/c '{fileName}' --output '{downloadsFolder}' -f best -x --audio-format mp3 '{webLink.Text}'");
                 }
             }
             catch (Exception Ex)
@@ -69,7 +69,7 @@ namespace YTVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.Arguments = $"/k {fileName} -F {webLink.Text}";
+            p.StartInfo.Arguments = $"/k '{fileName}' -F '{webLink.Text}'";
             p.Start();
 
             processID = p; 
@@ -107,7 +107,7 @@ namespace YTVideoDownloader
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.Arguments = $"/c {fileName} -o \"{downloadsFolder}\" -f \"{qualityTextBox.Text}\" \"{webLink.Text}\"";
+            p.StartInfo.Arguments = $"/c '{fileName}' -o '{downloadsFolder}' -f '{qualityTextBox.Text}' '{webLink.Text}'";
             p.Start();
         }
     }
